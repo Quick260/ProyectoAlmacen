@@ -1,0 +1,83 @@
+@page
+@model CrearUsuarioModel
+@{
+    ViewData["Title"] = "Crear Usuario";
+}
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+
+<form method="post" class="mx-auto mt-4"
+    style="width: 300px;">
+    <div class="mb-3">
+        <label for="NombreCompleto">Nombre Completo:</label>
+        <input type="text" id="NombreCompleto" name="NombreCompleto" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label for="Contraseña">Contraseña:</label>
+        <input type="password" id="Contraseña" name="Contraseña" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label for="TipoUsuario">Tipo de Usuario:</label>
+        <select id="TipoUsuario" name="TipoUsuario" class="form-control" required>
+            <option value="" selected disabled>Selecciona un tipo</option>
+            <option value="1">Estudiante</option>
+            <option value="2">Almacenista</option>
+            <option value="3">Profesor</option>
+            <option value="4">Coordinador</option>
+        </select>
+    </div>
+
+    <div class="mb-3 opcionesEstudiante" style="display:none;">
+        <label for="Registro">Registro:</label>
+        <input type="text" id="Registro" name="Registro" class="form-control" />
+    </div>
+
+    <div class="mb-3 opcionesEstudiante" style="display:none;">
+        <label for="Grupo">Grupo:</label>
+        <input type="text" id="Grupo" name="Grupo" class="form-control" />
+    </div>
+
+    <div class="mb-3 opcionesProfesor" style="display:none;">
+        <label for="Nomina">Nómina:</label>
+        <input type="text" id="NominaProfesor" name="NominaProfesor" class="form-control" />
+    </div>
+
+    <div class="mb-3 opcionesProfesor" style="display:none;">
+        <label for="Materia">Materia:</label>
+        <input type="text" id="MateriaProfesor" name="MateriaProfesor" class="form-control" />
+    </div>
+
+    <div class="mb-3 opcionesProfesor" style="display:none;">
+        <label for="Salon">Salón:</label>
+        <input type="text" id="SalonProfesor" name="SalonProfesor" class="form-control" />
+    </div>
+
+    <div class="mb-3 opcionesCoordinador" style="display:none;">
+        <label for="NumeroIdentificacion">Número de Identificación:</label>
+        <input type="text" id="NumeroIdentificacionCoordinador" name="NumeroIdentificacionCoordinador"
+            class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Crear Usuario</button>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#TipoUsuario').change(function () {
+            $('.opcionesEstudiante').hide();
+            $('.opcionesProfesor').hide();
+            $('.opcionesCoordinador').hide();
+
+            if ($(this).val() == '1') { // Estudiante
+                $('.opcionesEstudiante').show();
+            } else if ($(this).val() == '3') { // Profesor
+                $('.opcionesProfesor').show();
+            } else if ($(this).val() == '4') { // Coordinador
+                $('.opcionesCoordinador').show();
+            }
+        });
+    });
+</script>
