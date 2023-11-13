@@ -45,9 +45,7 @@ public partial class TuDbContext : DbContext
         {
             entity.ToTable("BitacoraMantenimiento");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("ID");
+            entity.Property(e => e.Id).HasColumnName("ID").ValueGeneratedOnAdd();
 
             entity.HasOne(d => d.NumeroInventarioNavigation).WithMany(p => p.BitacoraMantenimientos).HasForeignKey(d => d.NumeroInventario);
         });
@@ -56,9 +54,7 @@ public partial class TuDbContext : DbContext
         {
             entity.HasIndex(e => e.NumeroIdentificacion, "IX_Coordinadores_NumeroIdentificacion").IsUnique();
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("ID");
+            entity.Property(e => e.Id).HasColumnName("ID").ValueGeneratedOnAdd();
             entity.Property(e => e.Idusuario).HasColumnName("IDUsuario");
 
             entity.HasOne(d => d.IdusuarioNavigation).WithMany(p => p.Coordinadores).HasForeignKey(d => d.Idusuario);
@@ -68,9 +64,7 @@ public partial class TuDbContext : DbContext
         {
             entity.HasIndex(e => e.Registro, "IX_Estudiantes_Registro").IsUnique();
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("ID");
+            entity.Property(e => e.Id).HasColumnName("ID").ValueGeneratedOnAdd();
             entity.Property(e => e.Idusuario).HasColumnName("IDUsuario");
 
             entity.HasOne(d => d.IdusuarioNavigation).WithMany(p => p.Estudiantes).HasForeignKey(d => d.Idusuario);
@@ -78,9 +72,7 @@ public partial class TuDbContext : DbContext
 
         modelBuilder.Entity<HistorialPedido>(entity =>
         {
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("ID");
+            entity.Property(e => e.Id).HasColumnName("ID").ValueGeneratedOnAdd();
             entity.Property(e => e.EstadoPedido).HasDefaultValueSql("'Entregado'");
             entity.Property(e => e.Idusuario).HasColumnName("IDUsuario");
 
@@ -98,9 +90,7 @@ public partial class TuDbContext : DbContext
 
         modelBuilder.Entity<Prestamo>(entity =>
         {
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("ID");
+            entity.Property(e => e.Id).HasColumnName("ID").ValueGeneratedOnAdd();
             entity.Property(e => e.EstadoPrestamo).HasDefaultValueSql("'Pendiente'");
             entity.Property(e => e.Idusuario).HasColumnName("IDUsuario");
 
@@ -113,9 +103,7 @@ public partial class TuDbContext : DbContext
         {
             entity.HasIndex(e => e.Nomina, "IX_Profesores_Nomina").IsUnique();
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("ID");
+            entity.Property(e => e.Id).HasColumnName("ID").ValueGeneratedOnAdd();
             entity.Property(e => e.Idusuario).HasColumnName("IDUsuario");
 
             entity.HasOne(d => d.IdusuarioNavigation).WithMany(p => p.Profesores).HasForeignKey(d => d.Idusuario);
@@ -125,9 +113,7 @@ public partial class TuDbContext : DbContext
         {
             entity.ToTable("ReporteDanio");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("ID");
+            entity.Property(e => e.Id).HasColumnName("ID").ValueGeneratedOnAdd();
             entity.Property(e => e.Idusuario).HasColumnName("IDUsuario");
 
             entity.HasOne(d => d.IdusuarioNavigation).WithMany(p => p.ReporteDanios).HasForeignKey(d => d.Idusuario);
@@ -137,9 +123,7 @@ public partial class TuDbContext : DbContext
 
         modelBuilder.Entity<Solicitude>(entity =>
         {
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("ID");
+            entity.Property(e => e.Id).HasColumnName("ID").ValueGeneratedOnAdd();
             entity.Property(e => e.EstadoSolicitud).HasDefaultValueSql("'Pendiente'");
             entity.Property(e => e.Idusuario).HasColumnName("IDUsuario");
 
@@ -150,9 +134,7 @@ public partial class TuDbContext : DbContext
 
         modelBuilder.Entity<Usuario>(entity =>
         {
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("ID");
+            entity.Property(e => e.Id).HasColumnName("ID").ValueGeneratedOnAdd();
         });
 
         OnModelCreatingPartial(modelBuilder);

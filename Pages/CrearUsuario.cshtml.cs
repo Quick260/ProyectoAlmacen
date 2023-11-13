@@ -8,9 +8,13 @@ public class CrearUsuarioModel : PageModel
 
     [BindProperty]
     public Usuario NuevoUsuario { get; set; }
+    [BindProperty]
     public Estudiante NuevoEstudiante { get; set; }
-    public Profesore NuevoProfesor { get; set; }
+    [BindProperty]
     public Coordinadore NuevoCoordinador { get; set; }
+    [BindProperty]
+    public Profesore NuevoProfesor { get; set; }
+    
 
     public CrearUsuarioModel(TuDbContext dbContext)
     {
@@ -24,7 +28,7 @@ public class CrearUsuarioModel : PageModel
 
     public IActionResult OnPost()
     {
-        if (!ModelState.IsValid)
+        /*if (!ModelState.IsValid)
         {
             foreach (var modelStateEntry in ModelState.Values)
             {
@@ -34,30 +38,33 @@ public class CrearUsuarioModel : PageModel
                 }
             }
             return RedirectToPage("/Error");
-        }
+        }*/
 
-        NuevoUsuario.Id = _dbContext.Usuarios.Max(u => (long?)u.Id) ?? 0;
+        //NuevoUsuario.Id = _dbContext.Usuarios.Max(u => (long?)u.Id) ?? 0;
         _dbContext.Usuarios.Add(NuevoUsuario);
         _dbContext.SaveChanges();
+        long idGenerado = NuevoUsuario.Id;
+        
 
         if (NuevoUsuario.TipoUsuario == "1")
         {
-            NuevoEstudiante.Id = _dbContext.Estudiantes.Max(u => (long?)u.Id) ?? 0;
-            NuevoEstudiante.Idusuario = NuevoUsuario.Id;
+            NuevoEstudiante.Idusuario = idGenerado;
             _dbContext.Estudiantes.Add(NuevoEstudiante);
             _dbContext.SaveChanges();
         }
-        else if (NuevoUsuario.TipoUsuario == "3")
+        if (NuevoUsuario.TipoUsuario == "3")
         {
-            NuevoProfesor.Id = _dbContext.Profesores.Max(u => (long?)u.Id) ?? 0;
-            NuevoProfesor.Idusuario = NuevoUsuario.Id;
+            NuevoProfesor.Idusuario = idGenerado;
+            NuevoProfesor.Nomina = Request.Form["NominaProfesor"];
+            NuevoProfesor.MateriasImpartidas = Request.Form["MateriaProfesor"];
+            NuevoProfesor.SalonesAsignados = Request.Form["SalonProfesor"];
             _dbContext.Profesores.Add(NuevoProfesor);
             _dbContext.SaveChanges();
         }
-        else if (NuevoUsuario.TipoUsuario == "4")
+        if (NuevoUsuario.TipoUsuario == "4")
         {
-            NuevoCoordinador.Id = _dbContext.Coordinadores.Max(u => (long?)u.Id) ?? 0;
-            NuevoCoordinador.Idusuario = NuevoUsuario.Id;
+            NuevoCoordinador.Idusuario = idGenerado;
+            NuevoCoordinador.NumeroIdentificacion = Request.Form["NumeroIdentificacionCoordinador"];
             _dbContext.Coordinadores.Add(NuevoCoordinador);
             _dbContext.SaveChanges();
         }
