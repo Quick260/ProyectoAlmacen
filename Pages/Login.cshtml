@@ -1,0 +1,32 @@
+@page
+@model LoginModel
+@{
+    ViewData["Title"] = "Iniciar Sesión";
+}
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+
+<form method="post" class="mx-auto mt-4" style="width: 300px;">
+    <div class="mb-3">
+        <label for="Usuario">Usuario:</label>
+        <input type="text" id="Usuario" name="Usuario" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label for="Contrasena">Contraseña:</label>
+        <input type="password" id="Contrasena" name="Contrasena" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label for="TipoUsuario">Tipo de Usuario:</label>
+        <select id="TipoUsuario" name="TipoUsuario" class="form-control" required>
+            <option value="" selected disabled>Selecciona un tipo</option>
+            <option value="1">Estudiante</option>
+            <option value="2">Almacenista</option>
+            <option value="3">Profesor</option>
+            <option value="4">Coordinador</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+</form>
