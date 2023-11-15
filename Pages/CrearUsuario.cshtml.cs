@@ -46,22 +46,22 @@ public class CrearUsuarioModel : PageModel
         long idGenerado = NuevoUsuario.Id;
         
 
-        if (NuevoUsuario.TipoUsuario == "1")
+        if (NuevoUsuario.TipoUsuario == 1)
         {
             NuevoEstudiante.Idusuario = idGenerado;
             _dbContext.Estudiantes.Add(NuevoEstudiante);
             _dbContext.SaveChanges();
         }
-        if (NuevoUsuario.TipoUsuario == "3")
+        if (NuevoUsuario.TipoUsuario == 3)
         {
             NuevoProfesor.Idusuario = idGenerado;
             NuevoProfesor.Nomina = Request.Form["NominaProfesor"];
             NuevoProfesor.MateriasImpartidas = Request.Form["MateriaProfesor"];
-            NuevoProfesor.SalonesAsignados = Request.Form["SalonProfesor"];
+            NuevoProfesor.SalonesAsignados = long.TryParse(Request.Form["SalonProfesor"], out long SalonesAsignados) ? SalonesAsignados : (long?)null;
             _dbContext.Profesores.Add(NuevoProfesor);
             _dbContext.SaveChanges();
         }
-        if (NuevoUsuario.TipoUsuario == "4")
+        if (NuevoUsuario.TipoUsuario == 4)
         {
             NuevoCoordinador.Idusuario = idGenerado;
             NuevoCoordinador.NumeroIdentificacion = Request.Form["NumeroIdentificacionCoordinador"];
