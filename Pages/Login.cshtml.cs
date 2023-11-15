@@ -28,13 +28,7 @@ public class LoginModel : PageModel
 
             if (estudiante != null)
             {
-                // // Almacenar el tipo de usuario en la sesión
-                // HttpContext.Session.SetString("TipoUsuario", TipoUsuario.ToString());
-
-                // // Puedes almacenar más información del estudiante en la sesión si es necesario
-                // HttpContext.Session.SetString("EstudianteId", estudiante.Id.ToString());
-
-                // // Redireccionar a la página deseada (por ejemplo, la página del estudiante)
+                
                 return RedirectToPage("/Index");
             }
             else
@@ -43,10 +37,6 @@ public class LoginModel : PageModel
             }
         }
 
-        // Almacenar el tipo de usuario en la sesión
-        //HttpContext.Session.SetString("TipoUsuario", TipoUsuario.ToString());
-
-        // Redireccionar a la página deseada
         return Page();
     }
 
