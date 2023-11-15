@@ -58,15 +58,15 @@ public class LoginModel : PageModel
         }
         if (TipoUsuario == 3)
         {
-            var administrador = (from u in _dbContext.Usuarios
+            var profesor = (from u in _dbContext.Usuarios
                                  join p in _dbContext.Profesores on u.Id equals p.Idusuario
                                  where p.Nomina == Usuario && u.Contraseña == Contrasena
                                  select u).FirstOrDefault();
-            if (administrador != null)
+            if (profesor != null)
             {
-                HttpContext.Session.SetInt32("UsuarioId", (int)administrador.Id);
-                HttpContext.Session.SetString("TipoUsuario", "Administrador");
-                return RedirectToPage("/PruebaSesiones");
+                HttpContext.Session.SetInt32("UsuarioId", (int)profesor.Id);
+                HttpContext.Session.SetString("TipoUsuario", "Profesor");
+                return RedirectToPage("/Profesor/Solicitudes");
             }
             else
             {
