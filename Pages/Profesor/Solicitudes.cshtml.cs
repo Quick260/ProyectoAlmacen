@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ProyectoAlmacen.Models;
 using System.Collections.Generic;
@@ -41,6 +42,29 @@ namespace ProyectoAlmacen.Pages.Profesor
             })
             .ToList();
             Console.WriteLine($"Number of SolicitudConMateriales: {SolicitudesConMateriales.Count}");
+        }
+
+        public IActionResult OnPostAceptar(long solicitudId)
+        {
+            CambiarEstadoSolicitud(solicitudId, "Aprobada");
+            return RedirectToPage();
+        }
+
+        public IActionResult OnPostRechazar(long solicitudId)
+        {
+            CambiarEstadoSolicitud(solicitudId, "Denegada");
+            return RedirectToPage();
+        }
+
+        private void CambiarEstadoSolicitud(long solicitudId, string nuevoEstado)
+        {
+            var solicitud = _dbContext.Solicitudes.Find(solicitudId);
+
+            if (solicitud != null)
+            {
+                solicitud.EstadoSolicitud = nuevoEstado;
+                _dbContext.SaveChanges();
+            }
         }
     }
 

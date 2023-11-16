@@ -28,19 +28,6 @@ public class CrearUsuarioModel : PageModel
 
     public IActionResult OnPost()
     {
-        /*if (!ModelState.IsValid)
-        {
-            foreach (var modelStateEntry in ModelState.Values)
-            {
-                foreach (var error in modelStateEntry.Errors)
-                {
-                    Console.WriteLine($"Model Error: {error.ErrorMessage}");
-                }
-            }
-            return RedirectToPage("/Error");
-        }*/
-
-        //NuevoUsuario.Id = _dbContext.Usuarios.Max(u => (long?)u.Id) ?? 0;
         _dbContext.Usuarios.Add(NuevoUsuario);
         _dbContext.SaveChanges();
         long idGenerado = NuevoUsuario.Id;
@@ -72,4 +59,8 @@ public class CrearUsuarioModel : PageModel
         return RedirectToPage("/Index");
     }
 
+    /*bool validacionesUsuario(Usuario)
+    {
+        return true;
+    }*/
 }
