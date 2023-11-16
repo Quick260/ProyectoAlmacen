@@ -45,6 +45,10 @@ public partial class TuDbContext : DbContext
 
     public virtual DbSet<Usuario> Usuarios { get; set; }
 
+    public virtual DbSet<VistaMaterialesSolicitud> VistaMaterialesSolicituds { get; set; }
+
+    public virtual DbSet<VistaSolicitude> VistaSolicitudes { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlite("Data Source=ProyectoAlmace.db");
@@ -213,6 +217,25 @@ public partial class TuDbContext : DbContext
             entity.HasOne(d => d.TipoUsuarioNavigation).WithMany(p => p.Usuarios)
                 .HasForeignKey(d => d.TipoUsuario)
                 .OnDelete(DeleteBehavior.SetNull);
+        });
+
+        modelBuilder.Entity<VistaMaterialesSolicitud>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("VistaMaterialesSolicitud");
+
+            entity.Property(e => e.MaterialSolicitudId).HasColumnName("MaterialSolicitudID");
+            entity.Property(e => e.SolicitudId).HasColumnName("SolicitudID");
+        });
+
+        modelBuilder.Entity<VistaSolicitude>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("VistaSolicitudes");
+
+            entity.Property(e => e.SolicitudId).HasColumnName("SolicitudID");
         });
 
         OnModelCreatingPartial(modelBuilder);

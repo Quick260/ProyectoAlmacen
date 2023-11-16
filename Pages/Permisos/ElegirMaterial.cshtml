@@ -1,0 +1,80 @@
+@page
+@model ElegirMaterialModel
+@{
+    ViewData["Title"] = "Elegir Materiales";
+}
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+
+<form method="post" class="mx-auto mt-4" style="width: 800px;">
+    <h3>Materiales Disponibles</h3>
+
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Material</th>
+                <th>Descripción</th>
+                <th>Estado</th>
+                <th>Cantidad Disponible</th>
+                <th>Cantidad</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.MaterialesDisponibles.Count; i++)
+            {
+                var material = Model.MaterialesDisponibles[i];
+                <tr>
+                    <td>@material.MaterialNombre</td>
+                    <td>@material.MaterialDescripcion</td>
+                    <td>@material.Estado</td>
+                    <td id="cantidadDisponible_@i">@(material.CantidadDisponible ?? 0)</td>
+                    
+                    <form method="post">
+                        <td>
+                                <input type="hidden" name="MaterialesDisponibles.Index" value="@i" />
+                                <input type="number" name="MaterialesDisponibles[@i].CantidadSeleccionada" value="0" min="0" max="@material.CantidadDisponible" />
+                            
+                        </td>
+                        <td>
+                            <button type="submit" name="agregarMaterial" value="@material.IdMaterial">Agregar</button>
+                        </td>
+                    </form>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h3>Materiales Seleccionados</h3>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Material</th>
+                <th>Descripción</th>
+                <th>Estado</th>
+                <th>Cantidad Seleccionada</th>
+            </tr>
+        </thead>
+        <tbody id="materialesSeleccionadosBody">
+            @for (int i = 0; i < Model.MaterialesSeleccionados.Count; i++)
+            {
+                var materialSeleccionado = Model.MaterialesSeleccionados[i];
+                <tr>
+                    <td>@materialSeleccionado.MaterialNombre</td>
+                    <td>@materialSeleccionado.MaterialDescripcion</td>
+                    <td>@materialSeleccionado.Estado</td>
+                    <td>@materialSeleccionado.CantidadDisponible</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <input type="hidden" name="SolicitudId" value="@Model.SolicitudId" />
+
+    <button type="submit" class="btn btn-primary" id="guardarMaterialesBtn">Guardar Materiales</button>
+
+</form>
+
+
