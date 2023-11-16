@@ -1,0 +1,42 @@
+@page
+@model ProyectoAlmacen.Pages.Almacenista.SolicitudesAlmacenModel
+@{
+    ViewData["Title"] = "Listado de Solicitudes Aprobadas";
+}
+
+<h1>Listado de Solicitudes Aprobadas</h1>
+@if (Model.SolicitudesConMateriales != null && Model.SolicitudesConMateriales.Count > 0)
+{
+    @foreach (var solicitudConMateriales in Model.SolicitudesConMateriales)
+    {
+        <div class="card mb-3">
+            <div class="card-header">
+                Solicitud de @solicitudConMateriales.Solicitud.NombreUsuario
+            </div>
+            <div class="card-body">
+                <p><strong>Salón:</strong> @solicitudConMateriales.Solicitud.NombreLaboratorio</p>
+                <p><strong>Fecha petición:</strong> @solicitudConMateriales.Solicitud.FechaCreacion.ToString()</p>
+                <p><strong>Fecha en la que se usará:</strong> @solicitudConMateriales.Solicitud.FechaSolicitud</p>
+                <p><strong>Hora en la que se usará:</strong> @solicitudConMateriales.Solicitud.HoraSolicitud</p>
+
+                <p><strong>Materiales Solicitados:</strong></p>
+                <ul>
+                    @foreach (var material in solicitudConMateriales.Materiales)
+                    {
+                        <li>@material.NombreMaterial - @material.DescripcionMaterial - Cantidad: @material.Cantidad</li>
+                    }
+                </ul>
+                <div class="text-center">
+                    <form method="post">
+                        <button class="btn btn-primary" asp-page-handler="Prestar"
+                            asp-route-solicitudId="@solicitudConMateriales.Solicitud.SolicitudId">Prestar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <p>No hay solicitudes aprobadas</p>
+}

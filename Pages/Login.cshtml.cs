@@ -49,10 +49,12 @@ public class LoginModel : PageModel
             {
                 HttpContext.Session.SetInt32("UsuarioId", (int)almacenista.Id);
                 HttpContext.Session.SetString("TipoUsuario", "Almacenista");
-                return RedirectToPage("/PruebaSesiones");
+                Console.WriteLine(HttpContext.Session.GetString("TipoUsuario"));
+                return RedirectToPage("/Almacenista/SolicitudesAlmacen");
             }
             else
             {
+                Console.WriteLine("Puso mal la contrasena y/o usuario");
                 return RedirectToPage("/Error");
             }
         }

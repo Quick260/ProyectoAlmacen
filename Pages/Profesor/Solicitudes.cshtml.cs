@@ -21,6 +21,7 @@ namespace ProyectoAlmacen.Pages.Profesor
         {
             if (HttpContext.Session.GetString("TipoUsuario") != "Profesor")
             {
+                Console.WriteLine("Error: /Profesor/Solicitudes error en tipo de usuario");
                 Response.Redirect("/Error");
             }
 
@@ -29,8 +30,6 @@ namespace ProyectoAlmacen.Pages.Profesor
             var solicitudes = _dbContext.VistaSolicitudes
             .Where(s => s.NominaProfesor == usuarioId.ToString() && s.EstadoSolicitud == "Pendiente")
             .ToList();
-            Console.WriteLine($"Number of VistaSolicitudes: {solicitudes.Count}");
-            Console.WriteLine(usuarioId);
 
             SolicitudesConMateriales = solicitudes
             .Select(solicitud => new SolicitudConMateriales
@@ -41,7 +40,6 @@ namespace ProyectoAlmacen.Pages.Profesor
                     .ToList()
             })
             .ToList();
-            Console.WriteLine($"Number of SolicitudConMateriales: {SolicitudesConMateriales.Count}");
         }
 
         public IActionResult OnPostAceptar(long solicitudId)
