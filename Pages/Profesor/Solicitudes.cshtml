@@ -1,0 +1,36 @@
+
+@page
+@using System.Globalization
+@model ProyectoAlmacen.Pages.Profesor.SolicitudesModel
+@{
+    ViewData["Title"] = "Listado de Solicitudes";
+}
+
+<h1>Listado de Solicitudes</h1>
+@foreach (var solicitudConMateriales in Model.SolicitudesConMateriales)
+{
+    <div class="card mb-3">
+        <div class="card-header">
+            Solicitud de @solicitudConMateriales.Solicitud.NombreUsuario
+        </div>
+        <div class="card-body">
+            <p><strong>Salón:</strong> @solicitudConMateriales.Solicitud.NombreLaboratorio</p>
+            <p><strong>Fecha peticion:</strong> @solicitudConMateriales.Solicitud.FechaCreacion.ToString()</p>
+            <p><strong>Fecha en la que se usara:</strong> @solicitudConMateriales.Solicitud.FechaSolicitud</p>
+            <p><strong>Hora en la que se usara:</strong> @solicitudConMateriales.Solicitud.HoraSolicitud</p>
+
+            <p><strong>Materiales Solicitados:</strong></p>
+            <ul>
+                @foreach (var material in solicitudConMateriales.Materiales)
+                {
+                    <li>@material.NombreMaterial - @material.DescripcionMaterial - Cantidad: @material.Cantidad</li>
+                }
+            </ul>
+
+            <div class="text-center">
+                <button class="btn btn-success">Aceptar</button>
+                <button class="btn btn-danger">Rechazar</button>
+            </div>
+        </div>
+    </div>
+}
