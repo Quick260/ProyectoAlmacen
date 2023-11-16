@@ -18,10 +18,10 @@ namespace ProyectoAlmacen.Pages
         public void OnGet()
         {
             //En las funciones OnGet de las paginas revisas que el tipo de usuario coincida y de no ser así rediriges a la pagina de error
-            if (HttpContext.Session.GetString("TipoUsuario") != "Almacenista")
-            {
-                Response.Redirect("/Error");
-            }
+            // if (HttpContext.Session.GetString("TipoUsuario") != "Almacenista")
+            // {
+            //     Response.Redirect("/Error");
+            // }
         }
 
         public IActionResult OnPostLogout()
