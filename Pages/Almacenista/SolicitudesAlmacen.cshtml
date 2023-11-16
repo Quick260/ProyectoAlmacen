@@ -1,11 +1,10 @@
 @page
-@using System.Globalization
-@model ProyectoAlmacen.Pages.Profesor.SolicitudesModel
+@model ProyectoAlmacen.Pages.Almacenista.SolicitudesAlmacenModel
 @{
-    ViewData["Title"] = "Listado de Solicitudes";
+    ViewData["Title"] = "Listado de Solicitudes Aprobadas";
 }
 
-<h1>Listado de Solicitudes</h1>
+<h1>Listado de Solicitudes Aprobadas</h1>
 @if (Model.SolicitudesConMateriales != null && Model.SolicitudesConMateriales.Count > 0)
 {
     @foreach (var solicitudConMateriales in Model.SolicitudesConMateriales)
@@ -16,9 +15,9 @@
             </div>
             <div class="card-body">
                 <p><strong>Salón:</strong> @solicitudConMateriales.Solicitud.NombreLaboratorio</p>
-                <p><strong>Fecha peticion:</strong> @solicitudConMateriales.Solicitud.FechaCreacion.ToString()</p>
-                <p><strong>Fecha en la que se usara:</strong> @solicitudConMateriales.Solicitud.FechaSolicitud</p>
-                <p><strong>Hora en la que se usara:</strong> @solicitudConMateriales.Solicitud.HoraSolicitud</p>
+                <p><strong>Fecha petición:</strong> @solicitudConMateriales.Solicitud.FechaCreacion.ToString()</p>
+                <p><strong>Fecha en la que se usará:</strong> @solicitudConMateriales.Solicitud.FechaSolicitud</p>
+                <p><strong>Hora en la que se usará:</strong> @solicitudConMateriales.Solicitud.HoraSolicitud</p>
 
                 <p><strong>Materiales Solicitados:</strong></p>
                 <ul>
@@ -27,13 +26,10 @@
                         <li>@material.NombreMaterial - @material.DescripcionMaterial - Cantidad: @material.Cantidad</li>
                     }
                 </ul>
-
                 <div class="text-center">
                     <form method="post">
-                        <button class="btn btn-success" asp-page-handler="Aceptar"
-                            asp-route-solicitudId="@solicitudConMateriales.Solicitud.SolicitudId">Aceptar</button>
-                        <button class="btn btn-danger" asp-page-handler="Rechazar"
-                            asp-route-solicitudId="@solicitudConMateriales.Solicitud.SolicitudId">Rechazar</button>
+                        <button class="btn btn-primary" asp-page-handler="Prestar"
+                            asp-route-solicitudId="@solicitudConMateriales.Solicitud.SolicitudId">Prestar</button>
                     </form>
                 </div>
             </div>
@@ -42,5 +38,5 @@
 }
 else
 {
-    <p>No hay solicitudes pendientes</p>
+    <p>No hay solicitudes aprobadas</p>
 }

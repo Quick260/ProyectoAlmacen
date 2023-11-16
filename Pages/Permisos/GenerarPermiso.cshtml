@@ -5,7 +5,13 @@
 }
 
 <h1 class="text-center">@ViewData["Title"]</h1>
-
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+x   x   
 <form method="post" class="mx-auto mt-4" style="width: 600px;">
     <div class="mb-3">
         <label for="Plantel">Plantel:</label>

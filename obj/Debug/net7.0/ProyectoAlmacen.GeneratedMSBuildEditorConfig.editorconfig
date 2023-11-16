@@ -16,6 +16,14 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Escritorio\8D1\PAI\ProyectoAlmacen
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Escritorio/8D1/PAI/ProyectoAlmacen/Pages/Almacenista/OpcionesMateriales.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWxtYWNlbmlzdGFcT3BjaW9uZXNNYXRlcmlhbGVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Escritorio/8D1/PAI/ProyectoAlmacen/Pages/Almacenista/SolicitudesAlmacen.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWxtYWNlbmlzdGFcU29saWNpdHVkZXNBbG1hY2VuLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Escritorio/8D1/PAI/ProyectoAlmacen/Pages/CrearUsuario.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3JlYXJVc3VhcmlvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -38,6 +46,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Escritorio/8D1/PAI/ProyectoAlmacen/Pages/Permisos/GenerarPermiso.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGVybWlzb3NcR2VuZXJhclBlcm1pc28uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Escritorio/8D1/PAI/ProyectoAlmacen/Pages/Permisos/HistorialPermisos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGVybWlzb3NcSGlzdG9yaWFsUGVybWlzb3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Escritorio/8D1/PAI/ProyectoAlmacen/Pages/Privacy.cshtml]

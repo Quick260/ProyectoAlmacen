@@ -1,0 +1,116 @@
+@page
+@model HistorialPermisosModel
+@{
+    ViewData["Title"] = "Historial Permisos";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #solicitudesTable {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        #solicitudesTable th, #solicitudesTable td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        #solicitudesTable th {
+            background-color: #f2f2f2;
+        }
+
+        .detalleSolicitud {
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .detalleSolicitud:hover {
+            background-color: #f5f5f5;
+        }
+
+        .materialesSolicitud {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>@ViewData["Title"]</h1>
+
+    <table id="solicitudesTable">
+        <thead>
+            <tr>
+                <th>Nombre Usuario</th>
+                <th>Nombre Laboratorio</th>
+                <th>Nomina Profesor</th>
+                <th>Fecha Creacion</th>
+                <th>Fecha Solicitud</th>
+                <th>Hora Solicitud</th>
+                <th>Hora Retorno</th>
+                <th>Estado Solicitud</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var solicitud in Model.Solicitudes)
+            {
+                <tr data-solicitud-id="@solicitud.SolicitudId" class="detalleSolicitud">
+                    <td>@solicitud.NombreUsuario</td>
+                    <td>@solicitud.NombreLaboratorio</td>
+                    <td>@solicitud.NominaProfesor</td>
+                    <td>@solicitud.FechaCreacion</td>
+                    <td>@solicitud.FechaSolicitud</td>
+                    <td>@solicitud.HoraSolicitud</td>
+                    <td>@solicitud.HoraRetorno</td>
+                    <td>@solicitud.EstadoSolicitud</td>
+                </tr>
+                <tr class="materialesSolicitud">
+                    <td colspan="8">
+                        <ul>
+                            @foreach (var material in Model.DetallesSolicitud.Where(d => d.SolicitudId == solicitud.SolicitudId))
+                            {
+                                <li>@material.Cantidad,  @material.NombreMaterial</li>
+                            }
+                        </ul>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <button id="redireccionarButton" onclick="redireccionar()" class="btn btn-primary">Generar Permiso</button>
+
+
+    <script>
+
+        function redireccionar() {
+            // Cambiar la URL a la que deseas redirigir
+            window.location.href = '/Permisos/GenerarPermiso';
+        }
+        // Mostrar u ocultar la lista de materiales al hacer clic en la fila de la solicitud
+        document.addEventListener('DOMContentLoaded', function () {
+            var filasSolicitud = document.querySelectorAll('.detalleSolicitud');
+            filasSolicitud.forEach(function (fila) {
+                fila.addEventListener('click', function () {
+                    var materialesSolicitud = fila.nextElementSibling;
+                    materialesSolicitud.style.display = (materialesSolicitud.style.display === 'none') ? 'table-row' : 'none';
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

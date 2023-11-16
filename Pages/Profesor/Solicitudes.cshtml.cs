@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ProyectoAlmacen.Models;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace ProyectoAlmacen.Pages.Profesor
         {
             if (HttpContext.Session.GetString("TipoUsuario") != "Profesor")
             {
+                Console.WriteLine("Error: /Profesor/Solicitudes error en tipo de usuario");
                 Response.Redirect("/Error");
             }
 
@@ -28,8 +30,6 @@ namespace ProyectoAlmacen.Pages.Profesor
             var solicitudes = _dbContext.VistaSolicitudes
             .Where(s => s.NominaProfesor == usuarioId.ToString() && s.EstadoSolicitud == "Pendiente")
             .ToList();
-            Console.WriteLine($"Number of VistaSolicitudes: {solicitudes.Count}");
-            Console.WriteLine(usuarioId);
 
             SolicitudesConMateriales = solicitudes
             .Select(solicitud => new SolicitudConMateriales
@@ -40,7 +40,29 @@ namespace ProyectoAlmacen.Pages.Profesor
                     .ToList()
             })
             .ToList();
-            Console.WriteLine($"Number of SolicitudConMateriales: {SolicitudesConMateriales.Count}");
+        }
+
+        public IActionResult OnPostAceptar(long solicitudId)
+        {
+            CambiarEstadoSolicitud(solicitudId, "Aprobada");
+            return RedirectToPage();
+        }
+
+        public IActionResult OnPostRechazar(long solicitudId)
+        {
+            CambiarEstadoSolicitud(solicitudId, "Denegada");
+            return RedirectToPage();
+        }
+
+        private void CambiarEstadoSolicitud(long solicitudId, string nuevoEstado)
+        {
+            var solicitud = _dbContext.Solicitudes.Find(solicitudId);
+
+            if (solicitud != null)
+            {
+                solicitud.EstadoSolicitud = nuevoEstado;
+                _dbContext.SaveChanges();
+            }
         }
     }
 

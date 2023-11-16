@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using ProyectoAlmacen.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 public class GenerarPermisoModel : PageModel
@@ -23,6 +24,8 @@ public class GenerarPermisoModel : PageModel
     public List<Laboratorio> Laboratorios { get; set; }
 
     public List<Profesore> Profesores { get; set; }
+    
+
     
     [BindProperty]
     public Solicitude NuevaSolicitud { get; set; }
@@ -51,17 +54,64 @@ public class GenerarPermisoModel : PageModel
     // Método para manejar la solicitud POST al enviar el formulario
     public IActionResult OnPost()
     {
+
+
+    TempData["Error"] = null;
+    // Obtener la fecha actual
+    var fechaActual = DateTime.Now;
+
+    // Validar que la fecha sea mínimo un día después de la solicitud de materiales
+    var fechaSolicitud = DateTime.ParseExact(Request.Form["Fecha"], "yyyy-MM-dd", CultureInfo.InvariantCulture);
+    if ((fechaSolicitud - fechaActual).Days <= 0)
+    {     
+        TempData["Error"] = "La fecha debe ser mínimo un día después de la solicitud";
+        ModelState.AddModelError("Fecha", "La fecha debe ser mínimo un día después de la solicitud");
+        Console.WriteLine("La fecha debe ser mínimo un día después de la solicitud");
+        Console.WriteLine("FechaSolicitud: " + fechaSolicitud);
+    }
+    
+    // Validar que las horas registradas estén dentro de la jornada estudiantil (entre 7:00 y 14:30)
+
+    TimeSpan.TryParse(Request.Form["HoraSalida"], out var horaSalida);
+    TimeSpan.TryParse(Request.Form["HoraRegreso"], out var horaRegreso);
+
+    Console.WriteLine("HoraSalida: " + horaSalida);
+    Console.WriteLine("HoraRegreso: " + horaRegreso);
+
+    if (horaSalida < TimeSpan.Parse("07:00") ||
+        horaRegreso > TimeSpan.Parse("14:30"))
+    {
+        TempData["Error"] = "Las horas registradas deben estar dentro de la jornada estudiantil (entre 7:00 y 14:30).";
+        ModelState.AddModelError("NuevaSolicitud.HoraSalida", "Las horas registradas deben estar dentro de la jornada estudiantil (entre 7:00 y 14:30).");
+        ModelState.AddModelError("NuevaSolicitud.HoraRegreso", "Las horas registradas deben estar dentro de la jornada estudiantil (entre 7:00 y 14:30).");
+        Console.WriteLine("Las horas registradas deben estar dentro de la jornada estudiantil (entre 7:00 y 14:30).");
+        Console.WriteLine("HoraSalida: " + horaSalida);
+        Console.WriteLine("HoraRegreso: " + horaRegreso);
+    }
+
+    // Validar que la hora de salida sea antes que la hora de entrada
+    if (horaSalida >= horaRegreso)
+    {
+        TempData["Error"] = "La hora de salida debe ser antes que la hora de regreso.";
+        ModelState.AddModelError("NuevaSolicitud.HoraSalida", "La hora de salida debe ser antes que la hora de regreso.");
+        ModelState.AddModelError("NuevaSolicitud.HoraRegreso", "La hora de salida debe ser antes que la hora de regreso.");
+        Console.WriteLine("La hora de salida debe ser antes que la hora de regreso.");
+    }
+
+    // Validar que el tiempo de préstamo mínimo sea de 50 minutos
+    if ((horaRegreso - horaSalida).TotalMinutes < 50)
+    {
+        TempData["Error"] = "El tiempo de préstamo mínimo debe ser de 50 minutos.";
+        ModelState.AddModelError("NuevaSolicitud.HoraRegreso", "El tiempo de préstamo mínimo debe ser de 50 minutos.");
+        Console.WriteLine("El tiempo de préstamo mínimo debe ser de 50 minutos.");
+    }
+    
         if (!ModelState.IsValid)
         {
-            foreach (var modelStateValue in ModelState.Values)
-            {
-                foreach (var error in modelStateValue.Errors)
-                {
-                    Console.WriteLine(error.ErrorMessage);
-                }
-            }
+            return RedirectToPage("/Permisos/GenerarPermiso");
             
-            return RedirectToPage("/Error");
+        }else{
+            TempData["Error"] = null;
         }
 
         // Procesar los datos del formulario y guardar en la base de datos según sea necesario
@@ -99,10 +149,9 @@ public class GenerarPermisoModel : PageModel
     // Método de ejemplo para obtener el ID de usuario desde la sesión
     private int ObtenerIdUsuarioDesdeSesion()
     {
-        // Reemplaza esto con tu lógica real para obtener el ID de usuario desde la sesión
-        // Por ejemplo, si estás utilizando ASP.NET Core Identity, puedes acceder al ID de usuario así: 
-        // var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        // y luego convertirlo a int según sea necesario.
-        return 54; // Solo un valor de ejemplo, reemplázalo con tu lógica real
+        
+            int? id = HttpContext.Session.GetInt32("UsuarioId");
+            Console.WriteLine("UsuarioId: " + id);
+            return id ?? 0;
     }
 }
