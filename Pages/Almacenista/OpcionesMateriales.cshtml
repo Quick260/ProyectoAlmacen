@@ -1,0 +1,31 @@
+@*
+@page
+@model OpcionesMaterialesModel
+@{
+    ViewData["Title"] = "OpcionesMateriales";
+}
+
+<h1>Opciones de Materiales</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Número de inventario</th>
+            <th>Año</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var material in Model.Materiales)
+        {
+            <tr>
+                <td>@material.Nombre</td>
+                <td>@material.NumeroInventario</td>
+                <td>@material.Anio</td>
+                <td>@material.Estado</td>
+            </tr>
+        }
+    </tbody>
+</table>
+*@

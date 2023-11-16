@@ -16,6 +16,14 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Escritorio\8D1\PAI\ProyectoAlmacen
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Escritorio/8D1/PAI/ProyectoAlmacen/Pages/Almacenista/OpcionesMateriales.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWxtYWNlbmlzdGFcT3BjaW9uZXNNYXRlcmlhbGVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Escritorio/8D1/PAI/ProyectoAlmacen/Pages/Almacenista/SolicitudesAlmacen.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWxtYWNlbmlzdGFcU29saWNpdHVkZXNBbG1hY2VuLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Escritorio/8D1/PAI/ProyectoAlmacen/Pages/CrearUsuario.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3JlYXJVc3VhcmlvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

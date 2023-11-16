@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProyectoAlmacen.Models;
 
@@ -7,6 +8,7 @@ public partial class Usuario
 {
     public long Id { get; set; }
 
+    [RegularExpression(@"^[a-zA-Z ]+$", ErrorMessage = "El campo Nombre Completo solo puede contener letras y espacios.")]
     public string NombreCompleto { get; set; } = null!;
 
     public string Contraseña { get; set; } = null!;

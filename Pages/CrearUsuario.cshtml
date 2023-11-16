@@ -6,8 +6,21 @@
 
 <h1 class="text-center">@ViewData["Title"]</h1>
 
-<form method="post" class="mx-auto mt-4"
-    style="width: 300px;">
+<form method="post" class="mx-auto mt-4" style="width: 300px;">
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["Error"]
+        </div>
+    }
+    @if (TempData["UserCreated"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["UserCreated"]
+        </div>
+    }
+
     <div class="mb-3">
         <label for="NombreCompleto">Nombre Completo:</label>
         <input type="text" id="NombreCompleto" name="NombreCompleto" class="form-control" required />
