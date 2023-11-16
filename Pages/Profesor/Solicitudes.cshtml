@@ -1,28 +1,30 @@
+
 @page
-@model SolicitudesModel//List<SolicitudMaterial>
+@using System.Globalization
+@model ProyectoAlmacen.Pages.Profesor.SolicitudesModel
 @{
     ViewData["Title"] = "Listado de Solicitudes";
 }
 
 <h1>Listado de Solicitudes</h1>
-
-<!--foreach (var solicitud in Model)
-{-->
+@foreach (var solicitudConMateriales in Model.SolicitudesConMateriales)
+{
     <div class="card mb-3">
         <div class="card-header">
-            Solicitud de <!--solicitud.NombreSolicitante-->
+            Solicitud de @solicitudConMateriales.Solicitud.NombreUsuario
         </div>
         <div class="card-body">
-            <p><strong>Salón:</strong> <!--solicitud.Salon--></p>
-            <p><strong>Fecha Creación:</strong> <!--solicitud.FechaCreacion.ToString("yyyy-MM-dd HH:mm:ss")--></p>
-            <p><strong>Fecha y Hora Necesidad:</strong> <!--solicitud.FechaHoraNecesidad.ToString("yyyy-MM-dd HH:mm:ss")--></p>
+            <p><strong>Salón:</strong> @solicitudConMateriales.Solicitud.NombreLaboratorio</p>
+            <p><strong>Fecha peticion:</strong> @solicitudConMateriales.Solicitud.FechaCreacion.ToString()</p>
+            <p><strong>Fecha en la que se usara:</strong> @solicitudConMateriales.Solicitud.FechaSolicitud</p>
+            <p><strong>Hora en la que se usara:</strong> @solicitudConMateriales.Solicitud.HoraSolicitud</p>
 
             <p><strong>Materiales Solicitados:</strong></p>
             <ul>
-                <!--foreach (var material in solicitud.Materiales)
+                @foreach (var material in solicitudConMateriales.Materiales)
                 {
-                    <li>material</li>
-                }-->
+                    <li>@material.NombreMaterial - @material.DescripcionMaterial - Cantidad: @material.Cantidad</li>
+                }
             </ul>
 
             <div class="text-center">
@@ -31,4 +33,4 @@
             </div>
         </div>
     </div>
-<!--}-->
+}

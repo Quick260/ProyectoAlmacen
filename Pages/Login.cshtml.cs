@@ -61,11 +61,12 @@ public class LoginModel : PageModel
             var profesor = (from u in _dbContext.Usuarios
                                  join p in _dbContext.Profesores on u.Id equals p.Idusuario
                                  where p.Nomina == Usuario && u.Contraseña == Contrasena
-                                 select u).FirstOrDefault();
+                                 select p).FirstOrDefault();
             if (profesor != null)
             {
-                HttpContext.Session.SetInt32("UsuarioId", (int)profesor.Id);
+                HttpContext.Session.SetString("UsuarioId", profesor.Nomina);
                 HttpContext.Session.SetString("TipoUsuario", "Profesor");
+                Console.WriteLine(HttpContext.Session.GetString("UsuarioId"));
                 return RedirectToPage("/Profesor/Solicitudes");
             }
             else
@@ -78,10 +79,10 @@ public class LoginModel : PageModel
             var coordinador = (from u in _dbContext.Usuarios
                                join c in _dbContext.Coordinadores on u.Id equals c.Idusuario
                                where c.NumeroIdentificacion == Usuario && u.Contraseña == Contrasena
-                               select u).FirstOrDefault();
+                               select c).FirstOrDefault();
             if (coordinador != null)
             {
-                HttpContext.Session.SetInt32("UsuarioId", (int)coordinador.Id);
+                HttpContext.Session.SetString("UsuarioId", coordinador.NumeroIdentificacion);
                 HttpContext.Session.SetString("TipoUsuario", "Coordinador");
                 return RedirectToPage("/PruebaSesiones");
             }
