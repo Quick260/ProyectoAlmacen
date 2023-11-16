@@ -16,16 +16,20 @@ public class HistorialPermisosModel : PageModel{
     public List<VistaSolicitude> Solicitudes { get; set; }
     public List<VistaMaterialesSolicitud> DetallesSolicitud { get; set; }
 
-    public void OnGet(){
-        Solicitudes = _dbContext.VistaSolicitudes.Where(s => s.UsuarioId == HttpContext.Session.GetInt32("UsuarioId")).ToList();
-        Solicitudes.ForEach(s => 
-        {
-            s.FechaCreacion = DateTime.Parse(s.FechaCreacion).ToString("dd/MM/yyyy");
+public void OnGet()
+{
+    Solicitudes = _dbContext.VistaSolicitudes
+        .Where(s => s.UsuarioId == HttpContext.Session.GetInt32("UsuarioId"))
+        .ToList();
 
-            // Obtén el nombre completo del profesor
-            var profesor = _dbContext.Profesores
-                .Include(p => p.IdusuarioNavigation) // Asegúrate de que IdusuarioNavigation esté incluido
-                .FirstOrDefault(p => p.Nomina == s.NominaProfesor);
+    Solicitudes.ForEach(s => 
+    {
+        s.FechaCreacion = DateTime.Parse(s.FechaCreacion).ToString("dd/MM/yyyy");
+
+        // Obtén el nombre completo del profesor
+        var profesor = _dbContext.Profesores
+            .Include(p => p.IdusuarioNavigation) // Asegúrate de que IdusuarioNavigation esté incluido
+            .FirstOrDefault(p => p.Nomina == s.NominaProfesor);
 
             if (profesor != null && profesor.IdusuarioNavigation != null)
             {
@@ -33,8 +37,9 @@ public class HistorialPermisosModel : PageModel{
                 s.NominaProfesor = profesor.IdusuarioNavigation.NombreCompleto;
             }
         });
-        DetallesSolicitud = _dbContext.VistaMaterialesSolicituds.ToList();
 
-    }
+    DetallesSolicitud = _dbContext.VistaMaterialesSolicituds.ToList();
+}
+
     
 }
