@@ -1,0 +1,63 @@
+@page
+@model ProyectoAlmacen.Pages.Almacenista.AgregarMaterialModel
+
+@{
+    ViewData["Title"] = "Nuevo Material";
+}
+
+<h1 class="my-4">Agregar Nuevo Material</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="IdNombreExistente">Elegir Nombre Existente:</label>
+        <select class="form-control" id="IdNombreExistente" asp-for="NuevoMaterial.IdDatosMateriales"
+         oninput="blockDescription()">
+            <option value="-1">Escribir Nuevo Nombre</option>
+            @foreach (var nombreExistente in Model.NombresExistentes)
+            {
+                <option value="@nombreExistente.Id">@nombreExistente.Nombre</option>
+            }
+        </select>
+    </div>
+    <div class="form-group opcionNewName">
+        <label for="Nombre">Nombre:</label>
+        <input type="text" class="form-control" id="Nombre" asp-for="NuevoMaterial.Nombre"/>
+    </div>
+    <div class="form-group">
+        <label for="NumeroInventario">Número de inventario:</label>
+        <input type="text" class="form-control" id="NumeroInventario" asp-for="NuevoMaterial.NumeroInventario"
+            required />
+    </div>
+    <div class="form-group">
+        <label for="Anio">Año:</label>
+        <input type="number" class="form-control" id="Anio" asp-for="NuevoMaterial.Anio" required />
+    </div>
+    <div class="form-group">
+        <label for="Estado">Estado:</label>
+        <select class="form-control" id="Estado" asp-for="NuevoMaterial.Estado" required >
+            <option value="Disponible">Disponible</option>
+            <option value="En uso">En uso</option>
+            <option value="En mantenimiento">En mantenimiento</option>
+            <option value="No disponible">No disponible</option>
+        </select>
+    </div>
+    <div class="form-group opcionNewName">
+        <label for="Descripcion">Descripción:</label>
+        <textarea class="form-control" id="Descripcion" asp-for="NuevoMaterial.Descripcion"></textarea>
+    </div>
+    <p></p>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#IdNombreExistente').change(function () {
+            if ($(this).val() == '-1') { 
+                $('.opcionNewName').show();
+            }else{
+                $('.opcionNewName').hide();
+            }
+        });
+    });
+</script>
