@@ -16,10 +16,10 @@ namespace ProyectoAlmacen.Pages.Almacenista
 
         public void OnGet()
         {
-            /*if (HttpContext.Session.GetString("TipoUsuario") != "Almacenista")
+            if (HttpContext.Session.GetString("TipoUsuario") != "Almacenista")
             {
                 Response.Redirect("/Error");
-            }*/
+            }
 
             var consulta = from material in _dbContext.Materiales
                            join datosMaterial in _dbContext.DatosMateriales on material.DatosMateriales equals datosMaterial.Id
