@@ -1,26 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Respaldo\\Escuela\\semestre 7\\programacionAvanzada\\Vida2\\ProyectoAlmacen\\ProyectoAlmacen.csproj": {}
+    "D:\\Escritorio\\8D1\\PAI\\ProyectoAlmacen\\ProyectoAlmacen.csproj": {}
   },
   "projects": {
-    "D:\\Respaldo\\Escuela\\semestre 7\\programacionAvanzada\\Vida2\\ProyectoAlmacen\\ProyectoAlmacen.csproj": {
+    "D:\\Escritorio\\8D1\\PAI\\ProyectoAlmacen\\ProyectoAlmacen.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Respaldo\\Escuela\\semestre 7\\programacionAvanzada\\Vida2\\ProyectoAlmacen\\ProyectoAlmacen.csproj",
+        "projectUniqueName": "D:\\Escritorio\\8D1\\PAI\\ProyectoAlmacen\\ProyectoAlmacen.csproj",
         "projectName": "ProyectoAlmacen",
-        "projectPath": "D:\\Respaldo\\Escuela\\semestre 7\\programacionAvanzada\\Vida2\\ProyectoAlmacen\\ProyectoAlmacen.csproj",
-        "packagesPath": "C:\\Users\\enriq\\.nuget\\packages\\",
-        "outputPath": "D:\\Respaldo\\Escuela\\semestre 7\\programacionAvanzada\\Vida2\\ProyectoAlmacen\\obj\\",
+        "projectPath": "D:\\Escritorio\\8D1\\PAI\\ProyectoAlmacen\\ProyectoAlmacen.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "D:\\Escritorio\\8D1\\PAI\\ProyectoAlmacen\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\enriq\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "D:\\Respaldo\\Escuela\\semestre 8\\programacionWeb\\RepoPhoenix\\packages": {},
+          "D:\\Escritorio\\8D1\\Web II\\Repo Fenix\\packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -69,7 +69,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }
