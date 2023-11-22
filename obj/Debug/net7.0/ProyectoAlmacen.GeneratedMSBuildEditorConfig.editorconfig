@@ -9,73 +9,73 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ProyectoAlmacen
 build_property.RootNamespace = ProyectoAlmacen
-build_property.ProjectDir = D:\Escritorio\8D1\PAI\ProyectoAlmacen\
+build_property.ProjectDir = D:\Respaldo\Escuela\semestre 7\programacionAvanzada\Vida2\ProyectoAlmacen\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Escritorio\8D1\PAI\ProyectoAlmacen
+build_property.MSBuildProjectDirectory = D:\Respaldo\Escuela\semestre 7\programacionAvanzada\Vida2\ProyectoAlmacen
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Escritorio/8D1/PAI/ProyectoAlmacen/Pages/Almacenista/OpcionesMateriales.cshtml]
+[D:/Respaldo/Escuela/semestre 7/programacionAvanzada/Vida2/ProyectoAlmacen/Pages/Account/CrearUsuario.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxDcmVhclVzdWFyaW8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Respaldo/Escuela/semestre 7/programacionAvanzada/Vida2/ProyectoAlmacen/Pages/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Respaldo/Escuela/semestre 7/programacionAvanzada/Vida2/ProyectoAlmacen/Pages/Account/Logout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxMb2dvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Respaldo/Escuela/semestre 7/programacionAvanzada/Vida2/ProyectoAlmacen/Pages/Almacenista/AgregarMaterial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWxtYWNlbmlzdGFcQWdyZWdhck1hdGVyaWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Respaldo/Escuela/semestre 7/programacionAvanzada/Vida2/ProyectoAlmacen/Pages/Almacenista/OpcionesMateriales.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWxtYWNlbmlzdGFcT3BjaW9uZXNNYXRlcmlhbGVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Escritorio/8D1/PAI/ProyectoAlmacen/Pages/Almacenista/SolicitudesAlmacen.cshtml]
+[D:/Respaldo/Escuela/semestre 7/programacionAvanzada/Vida2/ProyectoAlmacen/Pages/Almacenista/SolicitudesAlmacen.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWxtYWNlbmlzdGFcU29saWNpdHVkZXNBbG1hY2VuLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Escritorio/8D1/PAI/ProyectoAlmacen/Pages/CrearUsuario.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3JlYXJVc3VhcmlvLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Escritorio/8D1/PAI/ProyectoAlmacen/Pages/Error.cshtml]
+[D:/Respaldo/Escuela/semestre 7/programacionAvanzada/Vida2/ProyectoAlmacen/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Escritorio/8D1/PAI/ProyectoAlmacen/Pages/Index.cshtml]
+[D:/Respaldo/Escuela/semestre 7/programacionAvanzada/Vida2/ProyectoAlmacen/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Escritorio/8D1/PAI/ProyectoAlmacen/Pages/Login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4uY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Escritorio/8D1/PAI/ProyectoAlmacen/Pages/Permisos/ElegirMaterial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGVybWlzb3NcRWxlZ2lyTWF0ZXJpYWwuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Escritorio/8D1/PAI/ProyectoAlmacen/Pages/Permisos/GenerarPermiso.cshtml]
+[D:/Respaldo/Escuela/semestre 7/programacionAvanzada/Vida2/ProyectoAlmacen/Pages/Permisos/GenerarPermiso.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGVybWlzb3NcR2VuZXJhclBlcm1pc28uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Escritorio/8D1/PAI/ProyectoAlmacen/Pages/Permisos/HistorialPermisos.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGVybWlzb3NcSGlzdG9yaWFsUGVybWlzb3MuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Escritorio/8D1/PAI/ProyectoAlmacen/Pages/Privacy.cshtml]
+[D:/Respaldo/Escuela/semestre 7/programacionAvanzada/Vida2/ProyectoAlmacen/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Escritorio/8D1/PAI/ProyectoAlmacen/Pages/Profesor/Solicitudes.cshtml]
+[D:/Respaldo/Escuela/semestre 7/programacionAvanzada/Vida2/ProyectoAlmacen/Pages/Profesor/Solicitudes.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZmVzb3JcU29saWNpdHVkZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Escritorio/8D1/PAI/ProyectoAlmacen/Pages/PruebaSesiones.cshtml]
+[D:/Respaldo/Escuela/semestre 7/programacionAvanzada/Vida2/ProyectoAlmacen/Pages/PruebaSesiones.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJ1ZWJhU2VzaW9uZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Escritorio/8D1/PAI/ProyectoAlmacen/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[D:/Respaldo/Escuela/semestre 7/programacionAvanzada/Vida2/ProyectoAlmacen/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Escritorio/8D1/PAI/ProyectoAlmacen/Pages/_ViewImports.cshtml]
+[D:/Respaldo/Escuela/semestre 7/programacionAvanzada/Vida2/ProyectoAlmacen/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Escritorio/8D1/PAI/ProyectoAlmacen/Pages/_ViewStart.cshtml]
+[D:/Respaldo/Escuela/semestre 7/programacionAvanzada/Vida2/ProyectoAlmacen/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Escritorio/8D1/PAI/ProyectoAlmacen/Pages/Shared/_Layout.cshtml]
+[D:/Respaldo/Escuela/semestre 7/programacionAvanzada/Vida2/ProyectoAlmacen/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-yy623x7jj4

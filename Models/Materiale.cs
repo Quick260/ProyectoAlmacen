@@ -12,7 +12,6 @@ public partial class Materiale
     public long? AnioMaterial { get; set; }
 
     public string? Estado { get; set; }
-    //public string? NumeroSerie { get; set; }
 
     public virtual ICollection<BitacoraMantenimiento> BitacoraMantenimientos { get; set; } = new List<BitacoraMantenimiento>();
 
