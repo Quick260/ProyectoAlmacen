@@ -16,6 +16,18 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Respaldo\Escuela\semestre 7\programacionAvanzada\Vida2\ProyectoAlmacen
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Respaldo/Escuela/semestre 7/programacionAvanzada/Vida2/ProyectoAlmacen/Pages/Account/CrearUsuario.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxDcmVhclVzdWFyaW8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Respaldo/Escuela/semestre 7/programacionAvanzada/Vida2/ProyectoAlmacen/Pages/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Respaldo/Escuela/semestre 7/programacionAvanzada/Vida2/ProyectoAlmacen/Pages/Account/Logout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxMb2dvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Respaldo/Escuela/semestre 7/programacionAvanzada/Vida2/ProyectoAlmacen/Pages/Almacenista/AgregarMaterial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWxtYWNlbmlzdGFcQWdyZWdhck1hdGVyaWFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -28,24 +40,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWxtYWNlbmlzdGFcU29saWNpdHVkZXNBbG1hY2VuLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Respaldo/Escuela/semestre 7/programacionAvanzada/Vida2/ProyectoAlmacen/Pages/CrearUsuario.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3JlYXJVc3VhcmlvLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/Respaldo/Escuela/semestre 7/programacionAvanzada/Vida2/ProyectoAlmacen/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Respaldo/Escuela/semestre 7/programacionAvanzada/Vida2/ProyectoAlmacen/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Respaldo/Escuela/semestre 7/programacionAvanzada/Vida2/ProyectoAlmacen/Pages/Login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4uY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Respaldo/Escuela/semestre 7/programacionAvanzada/Vida2/ProyectoAlmacen/Pages/Logout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9nb3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Respaldo/Escuela/semestre 7/programacionAvanzada/Vida2/ProyectoAlmacen/Pages/Permisos/GenerarPermiso.cshtml]
