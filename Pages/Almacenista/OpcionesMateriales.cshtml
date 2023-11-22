@@ -1,19 +1,22 @@
-@*
 @page
-@model OpcionesMaterialesModel
+@model ProyectoAlmacen.Pages.Almacenista.OpcionesMaterialesModel
 @{
     ViewData["Title"] = "OpcionesMateriales";
 }
 
-<h1>Opciones de Materiales</h1>
+<h1 class="my-4">Opciones de Materiales</h1>
 
-<table>
-    <thead>
+<a class="btn btn-primary mb-3" asp-page="/Almacenista/AgregarMaterial">Agregar Nuevo Material</a>
+
+<table class="table table-striped table-bordered">
+    <thead class="thead-dark">
         <tr>
-            <th>Nombre</th>
-            <th>Número de inventario</th>
-            <th>Año</th>
-            <th>Estado</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Número de inventario</th>
+            <th scope="col">Año</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -24,8 +27,12 @@
                 <td>@material.NumeroInventario</td>
                 <td>@material.Anio</td>
                 <td>@material.Estado</td>
+                <td>@material.Descripcion</td>
+                <td>
+                    <a class="btn btn-info btn-sm" href="#">Editar</a>
+                    <a class="btn btn-danger btn-sm" href="#">Eliminar</a>
+                </td>
             </tr>
         }
     </tbody>
 </table>
-*@

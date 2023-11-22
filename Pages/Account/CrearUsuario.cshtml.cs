@@ -35,6 +35,7 @@ public class CrearUsuarioModel : PageModel
             return RedirectToPage();
         }
 
+        NuevoUsuario.Contraseña = encriptarContrasena(NuevoUsuario.Contraseña);
         _dbContext.Usuarios.Add(NuevoUsuario);
         _dbContext.SaveChanges();
         long idGenerado = NuevoUsuario.Id;
@@ -148,5 +149,12 @@ public class CrearUsuarioModel : PageModel
         }
 
         return true;
+    }
+
+    public string encriptarContrasena(string contrasena){
+        string result = string.Empty;
+        byte[] encrypted = System.Text.Encoding.Unicode.GetBytes(contrasena);
+        result = Convert.ToBase64String(encrypted);
+        return result;
     }
 }
