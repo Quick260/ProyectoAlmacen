@@ -5,36 +5,47 @@
 }
 
 <h1 class="text-center">@ViewData["Title"]</h1>
-
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+x   x   
 <form method="post" class="mx-auto mt-4" style="width: 600px;">
     <div class="mb-3">
         <label for="Plantel">Plantel:</label>
-        <input type="text" id="Plantel" name="Plantel" class="form-control" required />
+        <input type="text" id="Plantel" name="Plantel" class="form-control" value="Colomos" readonly />
+    </div>
+
+    <div class="mb-3">
+        <label for="Registro">Registro:</label>
+        <input type="text" id="Registro" name="Registro" class="form-control" value="@Model.Estudiante.Registro" readonly />
+    </div>
+
+    <div class="mb-3">
+        <label for="NombreCompleto">Nombre Completo:</label>
+        <input type="text" id="NombreCompleto" name="NombreCompleto" class="form-control" value="@Model.Usuario.NombreCompleto" readonly />
+    </div>
+
+    <div class="mb-3">
+        <label for="GradoGrupo">Grado y Grupo:</label>
+        <input type="text" id="GradoGrupo" name="GradoGrupo" class="form-control" value="@Model.Estudiante.Grupo" readonly />
+    </div>
+
+    <div class="mb-3">
+        <label for="Laboratorio">Laboratorio:</label>
+        <select id="" name="Laboratorio" class="form-control" required>
+            @foreach (var laboratorio in Model.Laboratorios)
+            {
+                <option value="@laboratorio.Id">@laboratorio.NombreLaboratorio</option>
+            }
+        </select>
     </div>
 
     <div class="mb-3">
         <label for="Fecha">Fecha:</label>
         <input type="date" id="Fecha" name="Fecha" class="form-control" required />
-    </div>
-
-    <div class="mb-3">
-        <label for="NombreCompleto">Nombre Completo:</label>
-        <input type="text" id="NombreCompleto" name="NombreCompleto" class="form-control" required />
-    </div>
-
-    <div class="mb-3">
-        <label for="Registro">Registro:</label>
-        <input type="text" id="Registro" name="Registro" class="form-control" required />
-    </div>
-
-    <div class="mb-3">
-        <label for="GradoGrupo">Grado y Grupo:</label>
-        <input type="text" id="GradoGrupo" name="GradoGrupo" class="form-control" required />
-    </div>
-
-    <div class="mb-3">
-        <label for="Laboratorio">Laboratorio:</label>
-        <input type="text" id="Laboratorio" name="Laboratorio" class="form-control" required />
     </div>
 
     <div class="mb-3">
@@ -48,18 +59,13 @@
     </div>
 
     <div class="mb-3">
-        <label for="CantidadMaterial">Cantidad de Material Solicitado:</label>
-        <input type="text" id="CantidadMaterial" name="CantidadMaterial" class="form-control" required />
-    </div>
-
-    <div class="mb-3">
-        <label for="NombreMaterial">Nombre del Material Solicitado:</label>
-        <input type="text" id="NombreMaterial" name="NombreMaterial" class="form-control" required />
-    </div>
-
-    <div class="mb-3">
-        <label for="NombreFirmaProfesor">Nombre y Firma del Profesor:</label>
-        <input type="text" id="NombreFirmaProfesor" name="NombreFirmaProfesor" class="form-control" required />
+        <label for="Profesor">Profesor:</label>
+        <select id="Profesor" name="Profesor" class="form-control" required>
+            @foreach (var profesor in Model.Profesores)
+            {
+                <option value="@profesor.Id">@profesor.IdusuarioNavigation?.NombreCompleto</option>
+            }
+        </select>
     </div>
 
     <button type="submit" class="btn btn-primary">Guardar Permiso</button>
