@@ -5,6 +5,7 @@ namespace ProyectoAlmacen.Models;
 
 public partial class VistaSolicitude
 {
+    public long? UsuarioId { get; set; }
     public long? SolicitudId { get; set; }
 
     public string? NombreUsuario { get; set; }
