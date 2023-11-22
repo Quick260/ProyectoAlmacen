@@ -20,6 +20,7 @@ public class LoginModel : PageModel
 
     public IActionResult OnPost(string Usuario, string Contrasena, int TipoUsuario)
     {
+        Contrasena = encriptarContrasena(Contrasena);
         if (TipoUsuario == 1)
         {
             var estudiante = (from u in _dbContext.Usuarios
@@ -33,7 +34,7 @@ public class LoginModel : PageModel
                 HttpContext.Session.SetString("TipoUsuario", estudiante.TipoUsuario);
                 Console.WriteLine(HttpContext.Session.GetInt32("UsuarioId"));
                 Console.WriteLine(HttpContext.Session.GetString("TipoUsuario"));
-                return RedirectToPage("/Permisos/HistorialPermisos");
+                return RedirectToPage("/Permisos/GenerarPermiso");
             }
             else
             {
@@ -95,6 +96,13 @@ public class LoginModel : PageModel
         }
 
         return Page();
+    }
+
+    public string encriptarContrasena(string contrasena){
+        string result = string.Empty;
+        byte[] encrypted = System.Text.Encoding.Unicode.GetBytes(contrasena);
+        result = Convert.ToBase64String(encrypted);
+        return result;
     }
 
 }
