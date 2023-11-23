@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using ProyectoAlmacen.Models;
 using System.Collections.Generic;
 
@@ -12,7 +14,8 @@ namespace ProyectoAlmacen.Pages.Almacenista
             _dbContext = dbContext;
         }
 
-        public List<MaterialViewModel> Materiales { get; set; }
+        public List<Materiale> Materiales { get; set; } = new List<Materiale>();
+        public Materiale Material { get; set; } = new Materiale();
 
         public void OnGet()
         {
@@ -21,29 +24,19 @@ namespace ProyectoAlmacen.Pages.Almacenista
                 Response.Redirect("/Error");
             }
 
-            var consulta = from material in _dbContext.Materiales
-                           join datosMaterial in _dbContext.DatosMateriales on material.DatosMateriales equals datosMaterial.Id
-                           select new MaterialViewModel
-                           {
-                               NumeroInventario = material.NumeroInventario,
-                               Anio = (int)material.AnioMaterial,
-                               Estado = material.Estado,
-                               IdDatosMateriales = datosMaterial.Id,
-                               Nombre = datosMaterial.Nombre,
-                               Descripcion = datosMaterial.Descripcion
-                           };
-
-            Materiales = consulta.ToList();
+            Materiales = _dbContext.Materiales.Include(m => m.DatosMaterialesNavigation).ToList();
         }
 
-        public class MaterialViewModel
-        {
-            public string NumeroInventario { get; set; }
-            public int Anio { get; set; }
-            public string Estado { get; set; }
-            public long IdDatosMateriales { get; set; }
-            public string Nombre { get; set; }
-            public string Descripcion { get; set; }
+        public IActionResult OnPostEditarMaterial(long materialId){
+            return RedirectToPage("/Almacenista/AgregarMaterial", new { id = materialId});
+        }
+
+        public IActionResult OnPostEliminarMaterial(string materialId){
+            Console.WriteLine("MaterialId: " + materialId);
+            var material = _dbContext.Materiales.FirstOrDefault(m => m.NumeroInventario == materialId);
+            _dbContext.Materiales.Remove(material);
+            _dbContext.SaveChanges();
+            return RedirectToPage("/Almacenista/OpcionesMateriales");
         }
     }
 }
