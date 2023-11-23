@@ -34,7 +34,7 @@ public class LoginModel : PageModel
                 HttpContext.Session.SetString("TipoUsuario", estudiante.TipoUsuario);
                 Console.WriteLine(HttpContext.Session.GetInt32("UsuarioId"));
                 Console.WriteLine(HttpContext.Session.GetString("TipoUsuario"));
-                return RedirectToPage("/Permisos/GenerarPermiso");
+                return RedirectToPage("/Permisos/HistorialPermisos");
             }
             else
             {

@@ -23,15 +23,30 @@
         @foreach (var material in Model.Materiales)
         {
             <tr>
-                <td>@material.Nombre</td>
-                <td>@material.NumeroInventario</td>
-                <td>@material.Anio</td>
-                <td>@material.Estado</td>
-                <td>@material.Descripcion</td>
-                <td>
-                    <a class="btn btn-info btn-sm" href="#">Editar</a>
-                    <a class="btn btn-danger btn-sm" href="#">Eliminar</a>
-                </td>
+                @if (material.DatosMaterialesNavigation != null)
+                {
+                    <td>@material.DatosMaterialesNavigation?.Nombre</td>
+                    <td>@material.NumeroInventario</td>
+                    <td>@material.AnioMaterial</td>
+                    <td>@material.Estado</td>
+                    <td>@material.DatosMaterialesNavigation?.Descripcion</td>
+                    <td>
+                        <form method="post" asp-page="/Almacenista/OpcionesMateriales" asp-page-handler="EditarMaterial">
+                            <input type="hidden" name="materialId" value="@material.NumeroInventario" />
+                            <button type="submit" class="btn btn-info btn-sm">Editar</button>
+                        </form>
+                        <form method="post" asp-page="/Almacenista/OpcionesMateriales" asp-page-handler="EliminarMaterial"
+                        onsubmit="return confirm('¿Estás seguro de que quieres eliminar este material?');">
+                            <input type="hidden" name="materialId" value="@material.NumeroInventario" />
+                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                        </form>
+                    </td>
+                }
+                else
+                {
+                    <h1>Error</h1>
+                }
+
             </tr>
         }
     </tbody>

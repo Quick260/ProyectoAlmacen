@@ -18,7 +18,9 @@ namespace ProyectoAlmacen.Pages.Almacenista
             _dbContext = context;
         }
 
-        public List<SolicitudConMateriales> SolicitudesConMateriales { get; set; }
+        public List<Solicitude> SolicitudesConMateriales { get; set; } = new List<Solicitude>();
+        public List<Solicitude> SolicitudesAtrasadas { get; set; } = new List<Solicitude>();
+        public List<Prestamo> Prestamos { get; set; } = new List<Prestamo>();   
         public Prestamo prestamo { get; set; }
 
         public async Task<IActionResult> OnGetAsync()
@@ -28,20 +30,46 @@ namespace ProyectoAlmacen.Pages.Almacenista
                 Console.WriteLine("Error: /Almacenista/SolicitudesAlmacen error en tipo de usuario");
                 Response.Redirect("/Error");
             }
-            // Puedes personalizar esta lógica según tus necesidades
-            var solicitudes = _dbContext.VistaSolicitudes
-                .Where(s => s.EstadoSolicitud == "Aprobada")
-                .ToList();
 
-            SolicitudesConMateriales = solicitudes
-            .Select(solicitud => new SolicitudConMateriales
-            {
-                Solicitud = solicitud,
-                Materiales = _dbContext.VistaMaterialesSolicituds
-                    .Where(material => material.SolicitudId == solicitud.SolicitudId)
-                    .ToList()
-            })
-            .ToList();
+            SolicitudesConMateriales =_dbContext.Solicitudes
+                                        .Include(m => m.MaterialSolicituds)
+                                            .ThenInclude(m => m.NumeroInventarioNavigation)
+                                                .ThenInclude(m => m.DatosMaterialesNavigation)
+                                        .Include(m => m.LaboratorioNavigation)
+                                        .Include(m => m.IdusuarioNavigation)
+                                        .Include(m => m.ProfesorNavigation)
+                                            .ThenInclude(p => p.IdusuarioNavigation)
+                                        .Where(s => s.EstadoSolicitud == "Aprobada")
+                                        .AsEnumerable()
+                                        .Where(s => DateTime.Parse(s.FechaSolicitud) >= DateTime.Today)
+                                        .OrderBy(s => s.FechaSolicitud)
+                                        .ToList();
+
+            SolicitudesAtrasadas = _dbContext.Solicitudes
+                                        .Include(m => m.MaterialSolicituds)
+                                            .ThenInclude(m => m.NumeroInventarioNavigation)
+                                                .ThenInclude(m => m.DatosMaterialesNavigation)
+                                        .Include(m => m.LaboratorioNavigation)
+                                        .Include(m => m.IdusuarioNavigation)
+                                        .Include(m => m.ProfesorNavigation)
+                                            .ThenInclude(p => p.IdusuarioNavigation)
+                                        .Where(s => s.EstadoSolicitud == "Prestado")
+                                        .AsEnumerable()
+                                        .Where(s => DateTime.Parse(s.FechaSolicitud) < DateTime.Today ||
+                                        (DateTime.Parse(s.FechaSolicitud) == DateTime.Today &&
+                                        TimeSpan.Parse(s.HoraRetorno) < (DateTime.Now.TimeOfDay - TimeSpan.FromMinutes(15))))
+                                        .OrderBy(s => s.FechaSolicitud)
+                                        .ToList();
+
+            Prestamos = _dbContext.Prestamos.Include(p => p.IdsolicitudNavigation.MaterialSolicituds)
+                                                    .ThenInclude(m => m.NumeroInventarioNavigation)
+                                                        .ThenInclude(m => m.DatosMaterialesNavigation)
+                                            .Include(m => m.IdsolicitudNavigation.LaboratorioNavigation)
+                                            .Include(m => m.IdsolicitudNavigation.IdusuarioNavigation)
+                                            .Include(m => m.IdsolicitudNavigation.ProfesorNavigation)
+                                                .ThenInclude(p => p.IdusuarioNavigation)
+                                            .Where(s => s.FechaDevolucion == null)                                                 
+                                            .ToList();
 
             return Page();
         }
