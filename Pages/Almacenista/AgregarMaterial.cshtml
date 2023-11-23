@@ -10,41 +10,62 @@
 <form method="post">
     <div class="form-group">
         <label for="IdNombreExistente">Elegir Nombre Existente:</label>
-        <select class="form-control" id="IdNombreExistente" asp-for="NuevoMaterial.IdDatosMateriales"
-         oninput="blockDescription()">
-            <option value="-1">Escribir Nuevo Nombre</option>
-            @foreach (var nombreExistente in Model.NombresExistentes)
-            {
-                <option value="@nombreExistente.Id">@nombreExistente.Nombre</option>
-            }
-        </select>
+        @if (Model.EsNuevo)
+        {
+            <select class="form-control" id="IdNombreExistente" asp-for="datoMaterialAgregar.Id">
+                <option value="-1">Escribir Nuevo Nombre</option>
+                @foreach (var nombreExistente in Model.NombresExistentes)
+                {
+                    <option value="@nombreExistente.Id">@nombreExistente.Nombre</option>
+                }
+            </select>
+        }
+        else
+        {
+            <input type="text" class="form-control" id="NombreExistente" value="@Model.datoMaterialAgregar.Nombre" readonly />
+            <input type="hidden" id="IdNombreExistente" asp-for="datoMaterialAgregar.Id" />
+        }
     </div>
-    <div class="form-group opcionNewName">
-        <label for="Nombre">Nombre:</label>
-        <input type="text" class="form-control" id="Nombre" asp-for="NuevoMaterial.Nombre"/>
-    </div>
+    @if (Model.EsNuevo)
+    {
+        <div class="form-group opcionNewName">
+            <label for="Nombre">Nombre:</label>
+            <input type="text" class="form-control" id="Nombre" asp-for="datoMaterialAgregar.Nombre" />
+        </div>
+    }else{
+        <input type="hidden" id="Nombre" asp-for="datoMaterialAgregar.Nombre" />
+    }
     <div class="form-group">
         <label for="NumeroInventario">Número de inventario:</label>
-        <input type="text" class="form-control" id="NumeroInventario" asp-for="NuevoMaterial.NumeroInventario"
+        @if (Model.EsNuevo){
+            <input type="text" class="form-control" id="NumeroInventario" asp-for="materialAgregar.NumeroInventario"
             required />
+        }else{
+            <input type="text" class="form-control" id="NumeroInventario" asp-for="materialAgregar.NumeroInventario"
+            required readonly/>
+        }
+        
     </div>
     <div class="form-group">
         <label for="Anio">Año:</label>
-        <input type="number" class="form-control" id="Anio" asp-for="NuevoMaterial.Anio" required />
+        <input type="number" class="form-control" id="Anio" asp-for="materialAgregar.AnioMaterial" required />
     </div>
     <div class="form-group">
         <label for="Estado">Estado:</label>
-        <select class="form-control" id="Estado" asp-for="NuevoMaterial.Estado" required >
+        <select class="form-control" id="Estado" asp-for="materialAgregar.Estado" required>
             <option value="Disponible">Disponible</option>
             <option value="En uso">En uso</option>
             <option value="En mantenimiento">En mantenimiento</option>
             <option value="No disponible">No disponible</option>
         </select>
     </div>
-    <div class="form-group opcionNewName">
-        <label for="Descripcion">Descripción:</label>
-        <textarea class="form-control" id="Descripcion" asp-for="NuevoMaterial.Descripcion"></textarea>
-    </div>
+    @if (Model.EsNuevo)
+    {
+        <div class="form-group opcionNewName">
+            <label for="Descripcion">Descripción:</label>
+            <textarea class="form-control" id="Descripcion" asp-for="datoMaterialAgregar.Descripcion"></textarea>
+        </div>
+    }
     <p></p>
     <button type="submit" class="btn btn-primary">Guardar</button>
 </form>
@@ -53,9 +74,9 @@
 <script>
     $(document).ready(function () {
         $('#IdNombreExistente').change(function () {
-            if ($(this).val() == '-1') { 
+            if ($(this).val() == '-1') {
                 $('.opcionNewName').show();
-            }else{
+            } else {
                 $('.opcionNewName').hide();
             }
         });
