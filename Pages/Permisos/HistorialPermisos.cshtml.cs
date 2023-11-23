@@ -39,6 +39,7 @@ public void OnGet()
         });
 
     DetallesSolicitud = _dbContext.VistaMaterialesSolicituds.ToList();
+
 }
 
     
