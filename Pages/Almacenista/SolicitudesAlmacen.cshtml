@@ -1,44 +1,171 @@
 @page
 @model ProyectoAlmacen.Pages.Almacenista.SolicitudesAlmacenModel
 @{
-    ViewData["Title"] = "Listado de Solicitudes Aprobadas";
+    ViewData["Title"] = "Listado de Solicitudes";
 }
-<h4>Ir a:</h4>
-<a asp-page="/Almacenista/OpcionesMateriales" class="btn btn-primary">Opciones de materiales</a>
 
-<h1>Listado de Solicitudes Aprobadas</h1>
-@if (Model.SolicitudesConMateriales != null && Model.SolicitudesConMateriales.Count > 0)
-{
-    @foreach (var solicitudConMateriales in Model.SolicitudesConMateriales)
-    {
-        <div class="card mb-3">
-            <div class="card-header">
-                Solicitud de @solicitudConMateriales.Solicitud.NombreUsuario
-            </div>
-            <div class="card-body">
-                <p><strong>Salón:</strong> @solicitudConMateriales.Solicitud.NombreLaboratorio</p>
-                <p><strong>Fecha petición:</strong> @solicitudConMateriales.Solicitud.FechaCreacion.ToString()</p>
-                <p><strong>Fecha en la que se usará:</strong> @solicitudConMateriales.Solicitud.FechaSolicitud</p>
-                <p><strong>Hora en la que se usará:</strong> @solicitudConMateriales.Solicitud.HoraSolicitud</p>
+<div class="container">
+    <!-- Pestañas de navegación -->
+    <ul class="nav nav-tabs" id="myTabs">
+        <li class="nav-item">
+            <a class="nav-link active" id="solicitudesAprobadasTab" data-toggle="tab" href="#solicitudesAprobadas">Aprobadas</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="solicitudesAtrasadasTab" data-toggle="tab" href="#solicitudesAtrasadas">Atrasadas</a>
+        </li>
+        <li>
+            <a class="nav-link" id="retornoPrestamosTab" data-toggle="tab" href="#retornoPrestamos">Retorno de Prestamos</a>
+        </li>
+        <!-- Agrega más pestañas según sea necesario -->
+    </ul>
 
-                <p><strong>Materiales Solicitados:</strong></p>
-                <ul>
-                    @foreach (var material in solicitudConMateriales.Materiales)
-                    {
-                        <li>@material.NombreMaterial - @material.DescripcionMaterial - Cantidad: @material.Cantidad</li>
-                    }
-                </ul>
-                <div class="text-center">
-                    <form method="post">
-                        <button class="btn btn-primary" asp-page-handler="Prestar"
-                            asp-route-solicitudId="@solicitudConMateriales.Solicitud.SolicitudId">Prestar</button>
-                    </form>
-                </div>
-            </div>
+    <!-- Contenido de las pestañas -->
+    <div class="tab-content">
+        <!-- Sección de Solicitudes Aprobadas -->
+        <div id="solicitudesAprobadas" class="tab-pane fade show active">
+                    
+            <h1>Listado de Solicitudes Aprobadas</h1>
+            @if (Model.SolicitudesConMateriales != null && Model.SolicitudesConMateriales.Count > 0)
+            {
+                @foreach (var solicitud in Model.SolicitudesConMateriales)
+                {
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            Solicitud de @solicitud.IdusuarioNavigation.NombreCompleto
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Salón:</strong> @solicitud.LaboratorioNavigation.NombreLaboratorio</p>
+                            <p><strong>Fecha petición:</strong> @solicitud.FechaCreacion</p>
+                            <p><strong>Fecha en la que se usará:</strong> @solicitud.FechaSolicitud</p>
+                            <p><strong>Hora salida:</strong> @solicitud.HoraSolicitud</p>
+                            <p><strong>Hora regreso:</strong> @solicitud.HoraRetorno</p>
+                            <p><strong>Maestro:</strong> @solicitud.ProfesorNavigation.IdusuarioNavigation.NombreCompleto</p>
+                            
+
+                            <p><strong>Materiales Solicitados:</strong></p>
+                            <ul>
+                                @foreach (var material in solicitud.MaterialSolicituds)
+                                {
+                                    <li>@material.NumeroInventarioNavigation.DatosMaterialesNavigation.Nombre - 
+                                        @material.NumeroInventarioNavigation.DatosMaterialesNavigation.Descripcion </li>
+                                }
+                            </ul>
+                            <div class="text-center">
+                                <form method="post">
+                                    <button class="btn btn-primary" asp-page-handler="Prestar"
+                                        asp-route-solicitudId="@solicitud.Id">Prestar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <p>No hay solicitudes aprobadas</p>
+            }
+
         </div>
-    }
-}
-else
-{
-    <p>No hay solicitudes aprobadas</p>
-}
+
+        <!-- Sección de Solicitudes Atrasadas -->
+        <div id="solicitudesAtrasadas" class="tab-pane fade">
+            <h1>Listado de Solicitudes Atrasadas</h1>
+            @if (Model.SolicitudesAtrasadas != null && Model.SolicitudesAtrasadas.Count > 0)
+            {
+                @foreach (var solicitud in Model.SolicitudesAtrasadas)
+                {
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            Solicitud de @solicitud.IdusuarioNavigation.NombreCompleto
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Salón:</strong> @solicitud.LaboratorioNavigation.NombreLaboratorio</p>
+                            <p><strong>Fecha petición:</strong> @solicitud.FechaCreacion</p>
+                            <p><strong>Fecha en la que se usará:</strong> @solicitud.FechaSolicitud</p>
+                            <p><strong>Hora salida:</strong> @solicitud.HoraSolicitud</p>
+                            <p><strong>Hora regreso:</strong> @solicitud.HoraRetorno</p>
+                            <p><strong>Maestro:</strong> @solicitud.ProfesorNavigation.IdusuarioNavigation.NombreCompleto</p>
+                            
+
+                            <p><strong>Materiales Solicitados:</strong></p>
+                            <ul>
+                                @foreach (var material in solicitud.MaterialSolicituds)
+                                {
+                                    <li>@material.NumeroInventarioNavigation.DatosMaterialesNavigation.Nombre - 
+                                        @material.NumeroInventarioNavigation.DatosMaterialesNavigation.Descripcion </li>
+                                }
+                            </ul>
+                            <div class="text-center">
+                                <form method="post">
+                                    <button class="btn btn-primary" asp-page-handler="Prestar"
+                                        asp-route-solicitudId="@solicitud.Id">Prestar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <p>No hay solicitudes atrasadas</p>
+            }
+        </div>
+
+        <!-- Agrega más secciones según sea necesario -->
+        
+        <!-- Sección de Solicitudes Atrasadas -->
+        <div id="retornoPrestamos" class="tab-pane fade">
+            <h1>Listado de Prestamos Activos</h1>
+            @if (Model.Prestamos != null && Model.Prestamos.Count > 0)
+            {
+                @foreach (var prestamo in Model.Prestamos)
+                {
+                    var solicitud = prestamo.IdsolicitudNavigation;
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            Solicitud de @solicitud.IdusuarioNavigation.NombreCompleto
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Salón:</strong> @solicitud.LaboratorioNavigation.NombreLaboratorio</p>
+                            <p><strong>Fecha en la que se usará:</strong> @solicitud.FechaSolicitud</p>
+                            <p><strong>Hora salida:</strong> @solicitud.HoraSolicitud</p>
+                            <p><strong>Hora regreso:</strong> @solicitud.HoraRetorno</p>
+                            <p><strong>Maestro:</strong> @solicitud.ProfesorNavigation.IdusuarioNavigation.NombreCompleto</p>
+                            <p><strong>Estado:</strong> @prestamo.EstadoPrestamo</p>
+
+                            <p><strong>Materiales Solicitados:</strong></p>
+                            <ul>
+                                @foreach (var material in solicitud.MaterialSolicituds)
+                                {
+                                    <li>@material.NumeroInventarioNavigation.DatosMaterialesNavigation.Nombre - 
+                                        @material.NumeroInventarioNavigation.DatosMaterialesNavigation.Descripcion </li>
+                                }
+                            </ul>
+                            <div class="text-center">
+                                <form method="post">
+                                    <button class="btn btn-primary" asp-page-handler="Prestar"
+                                        asp-route-solicitudId="@solicitud.Id">Prestar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <p>No hay prestamos activos</p>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Script para manejar las pestañas con animaciones -->
+<script>
+    $(document).ready(function () {
+        // Configura el control de pestañas de Bootstrap
+        $('#myTabs a').on('click', function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        });
+    });
+</script>
