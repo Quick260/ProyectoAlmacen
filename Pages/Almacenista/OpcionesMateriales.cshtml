@@ -35,8 +35,6 @@
                             <input type="hidden" name="materialId" value="@material.NumeroInventario" />
                             <button type="submit" class="btn btn-info btn-sm">Editar</button>
                         </form>
-
-                        <p>@material.NumeroInventario</p>
                         <form method="post" asp-page="/Almacenista/OpcionesMateriales" asp-page-handler="EliminarMaterial"
                         onsubmit="return confirm('¿Estás seguro de que quieres eliminar este material?');">
                             <input type="hidden" name="materialId" value="@material.NumeroInventario" />
